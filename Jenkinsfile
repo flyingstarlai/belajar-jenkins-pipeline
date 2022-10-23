@@ -23,7 +23,7 @@ pipeline {
     stages {
         stage("Prepare") {
             steps {
-                nodejs(nodeJSInstallationName: 'Node 18.x') {
+                nodejs(nodeJSInstallationName: 'Node 18') {
                     echo "Hello Prepare"
                     echo "Start build: ${env.BUILD_NUMBER}"
                     echo "Current build: ${currentBuild.number}"
