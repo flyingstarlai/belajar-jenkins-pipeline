@@ -10,7 +10,7 @@ pipeline {
     }
     parameters {
         string(name: 'APPNAME', defaultValue: 'tcsmart', description: 'Your name...')
-        choice(name: 'APPID', chocies:['TCS01', 'TCS02', 'TCS03', 'TCS04', 'TCS05'], description: 'App Identifier\nShould unique' )
+        choice(name: 'APPID', choices:['TCS01', 'TCS02', 'TCS03', 'TCS04', 'TCS05'], description: 'App Identifier\nShould unique' )
     }
     options { 
         disableConcurrentBuilds()
