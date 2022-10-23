@@ -5,13 +5,17 @@ pipeline {
         }
     }
     environment {
-        APPNAME = "TC Smart"
-        APPID = "tcsmart"
         PLATFORM = "android"
         CLOUD = credentials("nextcloud")
     }
+    parameters {
+        string(name: 'APPNAME', defaultValue: 'tcsmart', description: 'Your name...')
+        choice(name: 'APPID', chocies:['TCS01', 'TCS02', 'TCS03', 'TCS04', 'TCS05'], description: 'App Identifier\nShould unique' )
+    }
     options { 
-        skipDefaultCheckout() 
+        disableConcurrentBuilds()
+        timeout(time: 30, unit: 'MINUTES')
+        skipDefaultCheckout()
     }
     stages {
         stage("Prepare") {
