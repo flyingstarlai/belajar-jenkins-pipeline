@@ -8,6 +8,7 @@ pipeline {
         APPNAME = "TC Smart"
         APPID = "tcsmart"
         PLATFORM = "android"
+        CLOUD = credentials("nextcloud")
     }
     options { 
         skipDefaultCheckout() 
@@ -16,11 +17,12 @@ pipeline {
         stage("Prepare") {
             steps {
                 echo "Hello Prepare"
-                cleanWs()
-                checkout scm
-                sh "chmod +x ./prepare.sh && ./prepare.sh"
                 echo "Start build: ${env.BUILD_NUMBER}"
                 echo "Current build: ${currentBuild.number}"
+                echo "CLOUD CREDENTIAL: ${CLOUD_USR}:${CLOUD_PSW}"
+                cleanWs()
+                checkout scm
+                sh "chmod +x ./prepare.sh && ./prepare.sh"        
             }
         }
         
