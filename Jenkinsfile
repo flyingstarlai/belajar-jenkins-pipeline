@@ -1,5 +1,9 @@
 pipeline {
-    agent { node("thinkpad") }
+    agent {
+        node {
+            label "ubuntu && android"
+        }
+    }
     stages {
         stage("Hello") {
             steps {
