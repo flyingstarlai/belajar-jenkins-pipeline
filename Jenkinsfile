@@ -5,9 +5,20 @@ pipeline {
         }
     }
     stages {
-        stage("Hello") {
+        stage("Prepare") {
             steps {
-                echo("Hello Pipeline")
+                echo "Hello Prepare"
+                sh "./prepare.sh"
+            }
+        }
+        stage("Build") {
+            steps {
+                echo("Hello Build")
+            }
+        }
+        stage("Publish") {
+            steps {
+                echo("Hello Publish")
             }
         }
     }
