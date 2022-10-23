@@ -13,7 +13,7 @@ pipeline {
     // }
     parameters {
         string(name: 'APPNAME', defaultValue: 'tcsmart', description: 'Your name...')
-        choice(name: 'APPID', choices:['TCS01', 'TCS02', 'TCS03', 'TCS04', 'TCS05'], description: 'App Identifier\nShould unique' )
+        extendedChoice(name: 'APPID', description: 'Select APPID to use', type: 'PT_RADIO', value: 'TCS01', 'TCS02', 'TCS03', 'TCS04', 'TCS05', visibleItemCount: 5)
     }
     options { 
         disableConcurrentBuilds()
