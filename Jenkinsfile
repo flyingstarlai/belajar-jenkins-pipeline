@@ -4,6 +4,11 @@ pipeline {
             label "ubuntu && android"
         }
     }
+    environment {
+        APPNAME = "TC Smart"
+        APPID = "tcsmart"
+        PLATFORM = "android"
+    }
     options { 
         skipDefaultCheckout() 
     }
@@ -13,7 +18,7 @@ pipeline {
                 echo "Hello Prepare"
                 cleanWs()
                 checkout scm
-                sh "chmod +x ./prepare.sh && ./prepare.sh tcsmart"
+                sh "chmod +x ./prepare.sh && ./prepare.sh ${APPNAME}"
                 echo "Start build: ${env.BUILD_NUMBER}"
                 echo "Current build: ${currentBuild.number}"
             }
@@ -29,7 +34,7 @@ pipeline {
                         "name": "Danda",
                         "job": "CEO"
                     ]
-                    writeJSON(file: "data_test.json", json: data)
+                    writeJSON(file: "data_${env.BUILD_NUMBER}.json", json: data)
                 }
             }
         }
