@@ -23,13 +23,15 @@ pipeline {
     stages {
         stage("Prepare") {
             steps {
-                echo "Hello Prepare"
-                echo "Start build: ${env.BUILD_NUMBER}"
-                echo "Current build: ${currentBuild.number}"
-                cleanWs()
-                checkout scm
-                sh "chmod +x ./prepare.sh && ./prepare.sh"
-                sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
+                nodejs(nodeJSInstallationName: 'Node 18.x') {
+                    echo "Hello Prepare"
+                    echo "Start build: ${env.BUILD_NUMBER}"
+                    echo "Current build: ${currentBuild.number}"
+                    cleanWs()
+                    checkout scm
+                    sh "chmod +x ./prepare.sh && ./prepare.sh"
+                    sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
+                }    
             }
         }
         
