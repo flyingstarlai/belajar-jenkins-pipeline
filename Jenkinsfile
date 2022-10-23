@@ -4,11 +4,15 @@ pipeline {
             label "ubuntu && android"
         }
     }
+    options { 
+        skipDefaultCheckout() 
+    }
     stages {
         stage("Prepare") {
             steps {
                 echo "Hello Prepare"
                 cleanWs()
+                checkout scm
                 sh "chmod +x ./prepare.sh && ./prepare.sh tcsmart"
             }
         }
