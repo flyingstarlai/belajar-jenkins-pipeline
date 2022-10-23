@@ -8,6 +8,9 @@ pipeline {
         PLATFORM = "android"
         CLOUD = credentials("nextcloud")
     }
+    // triggers {
+    //     cron("*/5 * * * *")
+    // }
     parameters {
         string(name: 'APPNAME', defaultValue: 'tcsmart', description: 'Your name...')
         choice(name: 'APPID', choices:['TCS01', 'TCS02', 'TCS03', 'TCS04', 'TCS05'], description: 'App Identifier\nShould unique' )
@@ -45,6 +48,11 @@ pipeline {
             }
         }
         stage("Publish") {
+            input {
+                message "Can we publish?"
+                ok "Yes!"
+                submitter "admin,starlai"
+            }
             steps {
                 echo("Hello Publish")
             }
