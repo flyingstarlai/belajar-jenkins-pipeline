@@ -19,10 +19,10 @@ pipeline {
                 echo "Hello Prepare"
                 echo "Start build: ${env.BUILD_NUMBER}"
                 echo "Current build: ${currentBuild.number}"
-                sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
                 cleanWs()
                 checkout scm
-                sh "chmod +x ./prepare.sh && ./prepare.sh"        
+                sh "chmod +x ./prepare.sh && ./prepare.sh"
+                sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
             }
         }
         
