@@ -8,17 +8,21 @@ pipeline {
         stage("Prepare") {
             steps {
                 echo "Hello Prepare"
-                sh "chmod +x ./prepare.sh"
-                sh "./prepare.sh"
+                sh "chmod +x ./prepare.sh && ./prepare.sh tcsmart"
             }
         }
         
         stage("Build") {
             steps {
                 script {
-                    for(int i = 0; i < 10; i++) {
+                    for(int i = 0; i < 5; i++) {
                         echo "Script ${i}"
                     }
+                    def data = [
+                        "name": "Danda",
+                        "job": "CEO"
+                    ]
+                    writeJSON(file: "data.json", json: data)
                 }
             }
         }
