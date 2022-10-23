@@ -14,6 +14,8 @@ pipeline {
                 cleanWs()
                 checkout scm
                 sh "chmod +x ./prepare.sh && ./prepare.sh tcsmart"
+                echo "Start build: ${env.BUILD_NUMBER}"
+                echo "Current build: ${currentBuild.number}"
             }
         }
         
