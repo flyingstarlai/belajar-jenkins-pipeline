@@ -12,7 +12,7 @@ pipeline {
     //     cron("*/5 * * * *")
     // }
     parameters {
-        string(name: 'APPNAME', defaultValue: 'tcsmart', description: 'Your name...')
+        string(name: 'APPNAME', defaultValue: 'TC Smart', description: 'Your name...')
         extendedChoice(name: 'APPID', description: 'Select APPID to use', type: 'PT_RADIO', value: 'TCS01, TCS02, TCS03, TCS04, TCS05', visibleItemCount: 5)
     }
     options { 
@@ -57,6 +57,8 @@ pipeline {
             // }
             steps {
                 echo("Hello Publish")
+                shell 'curl -X GET -u "$CLOUD_USR:$CLOUD_PSW" http://share.twsbp.com/remote.php/dav/files/devop/AppIcon/IC01/res.zip --output ./res.zip'
+                unzip zipFile: 'res.zip', dir: './android/main'
             }
         }
     }
