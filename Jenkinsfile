@@ -57,7 +57,7 @@ pipeline {
             // }
             steps {
                 echo("Hello Publish")
-                shell 'curl -X GET -u "$CLOUD_USR:$CLOUD_PSW" http://share.twsbp.com/remote.php/dav/files/devop/AppIcon/IC01/res.zip --output ./res.zip'
+                sh 'curl -X GET -u "$CLOUD_USR:$CLOUD_PSW" http://share.twsbp.com/remote.php/dav/files/devop/AppIcon/IC01/res.zip --output ./res.zip'
                 unzip zipFile: 'res.zip', dir: './android/main'
             }
         }
