@@ -12,15 +12,14 @@ pipeline {
                 sh "./prepare.sh"
             }
         }
-         stage("Install") {
-            steps {
-                echo("Hello Install")
-                sh "./install"
-            }
-        }
+        
         stage("Build") {
             steps {
-                echo("Hello Build")
+                script {
+                    for(int i = 0; i < 10; i++) {
+                        echo "Script ${i}"
+                    }
+                }
             }
         }
         stage("Publish") {
