@@ -12,6 +12,12 @@ pipeline {
                 sh "./prepare.sh"
             }
         }
+         stage("Install") {
+            steps {
+                echo("Hello Install")
+                sh "./install"
+            }
+        }
         stage("Build") {
             steps {
                 echo("Hello Build")
