@@ -18,7 +18,7 @@ pipeline {
                 echo "Hello Prepare"
                 cleanWs()
                 checkout scm
-                sh "chmod +x ./prepare.sh && ./prepare.sh ${APPNAME}"
+                sh "chmod +x ./prepare.sh && ./prepare.sh"
                 echo "Start build: ${env.BUILD_NUMBER}"
                 echo "Current build: ${currentBuild.number}"
             }
