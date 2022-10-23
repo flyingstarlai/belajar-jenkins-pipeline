@@ -8,6 +8,7 @@ pipeline {
         stage("Prepare") {
             steps {
                 echo "Hello Prepare"
+                sh "chmod +x ./prepare.sh"
                 sh "./prepare.sh"
             }
         }
