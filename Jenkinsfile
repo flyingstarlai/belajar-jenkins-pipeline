@@ -8,6 +8,7 @@ pipeline {
         stage("Prepare") {
             steps {
                 echo "Hello Prepare"
+                cleanWs()
                 sh "chmod +x ./prepare.sh && ./prepare.sh tcsmart"
             }
         }
@@ -22,7 +23,7 @@ pipeline {
                         "name": "Danda",
                         "job": "CEO"
                     ]
-                    writeJSON(file: "data.json", json: data)
+                    writeJSON(file: "data_test.json", json: data)
                 }
             }
         }
