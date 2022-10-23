@@ -50,11 +50,11 @@ pipeline {
             }
         }
         stage("Publish") {
-            input {
-                message "Can we publish?"
-                ok "Yes!"
-                submitter "admin,starlai"
-            }
+            // input {
+            //     message "Can we publish?"
+            //     ok "Yes!"
+            //     submitter "admin,starlai"
+            // }
             steps {
                 echo("Hello Publish")
             }
