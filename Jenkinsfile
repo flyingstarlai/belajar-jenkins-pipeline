@@ -50,7 +50,7 @@ pipeline {
     stages {
         stage("Prepare:iOS") {
             when {
-                equals Platform "android"
+                equals(actual: params.Platform, expected: "ios")
             }
             steps {
                 echo "Preparing for iOS"
@@ -67,7 +67,7 @@ pipeline {
         }
            stage("Prepare:android") {
             when {
-                equals Platform "android"
+                equals(actual: params.Platform, expected: "android")
             }
             steps {
                 echo "Preparing for android"
