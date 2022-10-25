@@ -8,6 +8,19 @@ properties([
                 $class: 'ScriptlerScript',
                 scriptlerScriptId:'getPlatforms.groovy'
             ]
+        ],
+         [
+            $class: 'CascadeChoiceParameter',
+            choiceType: 'PT_SINGLE_SELECT',
+            name: 'Host',
+            referencedParameters: 'Platform',
+            script: [
+                $class: 'ScriptlerScript',
+                scriptlerScriptId:'getPlatformIcons.groovy',
+                parameters: [
+                [name:'Platform', value: '$Platform']
+            ]
+        
         ]
     ])
 ])
