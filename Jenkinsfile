@@ -43,7 +43,7 @@ pipeline {
         skipDefaultCheckout()
     }
     stages {
-        stage("Android:Stage") {
+        stage("Android:Stages") {
             when {
                 expression {
                     return params.Platform == "Android"
@@ -72,7 +72,7 @@ pipeline {
                 }
             }
         }
-        stage("iOS:Stage") {
+        stage("iOS:Stages") {
             when {
                 expression {
                     return params.Platform == "iOS"
