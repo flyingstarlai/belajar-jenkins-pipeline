@@ -33,8 +33,7 @@ pipeline {
         }
     }
     environment {
-        PLATFORM = "android"
-        CLOUD = credentials("nextcloud")
+         CLOUD = credentials("nextcloud")
     }
     // triggers {
     //     cron("*/5 * * * *")
@@ -50,7 +49,9 @@ pipeline {
     stages {
         stage("Prepare:iOS") {
             when {
-                equals(actual: params.Platform, expected: "ios")
+                expression {
+                    return params.Platform == "iOS"
+                }
             }
             steps {
                 echo "Preparing for iOS"
@@ -67,7 +68,9 @@ pipeline {
         }
            stage("Prepare:android") {
             when {
-                equals(actual: params.Platform, expected: "android")
+                expression {
+                    return params.Platform == "Android"
+                }
             }
             steps {
                 echo "Preparing for android"
