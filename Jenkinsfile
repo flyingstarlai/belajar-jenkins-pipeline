@@ -1,3 +1,17 @@
+properties([
+    parameters([
+        [
+            $class: 'ChoiceParameter',
+            choiceType: 'PT_SINGLE_SELECT',
+            name: 'Platform',
+            script: [
+                $class: 'ScriptlerScript',
+                scriptlerScriptId:'Platform.groovy'
+            ]
+        ]
+    ])
+])
+
 pipeline {
     agent {
         node {
@@ -13,7 +27,6 @@ pipeline {
     // }
     parameters {
         string(name: 'APPNAME', defaultValue: 'TC Smart', description: 'Your name...')
-        extendedChoice(name: 'APPID', description: 'Select APPID to use', type: 'PT_RADIO', value: 'TCS01, TCS02, TCS03, TCS04, TCS05', visibleItemCount: 5)
     }
     options { 
         disableConcurrentBuilds()
@@ -38,9 +51,9 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    for(int i = 0; i < 5; i++) {
-                        echo "Script ${i}"
-                    }
+                    // for(int i = 0; i < 5; i++) {
+                    //     echo "Script ${i}"
+                    // }
                     def data = [
                         "name": "Danda",
                         "job": "CEO"
