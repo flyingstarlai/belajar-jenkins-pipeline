@@ -18,7 +18,8 @@ properties([
                 $class: 'ScriptlerScript',
                 scriptlerScriptId:'getPlatformIcons.groovy',
                 parameters: [
-                [name:'Platform', value: '$Platform']
+                    [name:'Platform', value: '$Platform']
+                ]
             ]
         
         ]
