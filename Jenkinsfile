@@ -43,67 +43,67 @@ pipeline {
         skipDefaultCheckout()
     }
     stages {
-        stage("Android:Stages") {
-            when {
-                expression {
-                    return params.Platform == "Android"
-                }
-            }
-            agent {
-                node {
-                    label "android"
-                }
-            }
-            stages {
-                stage("Prepare") {
-                    steps {
-                        echo "Rename name and identifier"
-                    }
-                }
-                stage("Install") {
-                    steps {
-                        echo "Rename name and identifier"
-                    }
-                }
-                stage("Build") {
-                    steps {
-                        echo "Rename name and identifier"
-                    }
-                }
-            }
-        }
-        stage("iOS:Stages") {
-            when {
-                expression {
-                    return params.Platform == "iOS"
-                }
-            }
-            agent {
-                node {
-                    label "ios"
-                }
-            }
-            stages {
-                stage("Prepare") {
-                    steps {
-                        echo "Rename name and identifier"
-                    }
-                }
-                stage("Install") {
-                    steps {
-                        echo "Rename name and identifier"
-                    }
-                }
-                stage("Build") {
-                    steps {
-                        echo "Rename name and identifier"
-                    }
-                }
-            }
-        }
+        // stage("Android:Stages") {
+        //     agent {
+        //         node {
+        //             label params.Platform
+        //         }
+        //     }
+        //     stages {
+        //         stage("Prepare") {
+        //             steps {
+        //                 echo "Rename name and identifier"
+        //             }
+        //         }
+        //         stage("Install") {
+        //             steps {
+        //                 echo "Rename name and identifier"
+        //             }
+        //         }
+        //         stage("Build") {
+        //             steps {
+        //                 echo "Rename name and identifier"
+        //             }
+        //         }
+        //     }
+        // }
+        // stage("iOS:Stages") {
+        //     when {
+        //         expression {
+        //             return params.Platform == "iOS"
+        //         }
+        //     }
+        //     agent {
+        //         node {
+        //             label "ios"
+        //         }
+        //     }
+        //     stages {
+        //         stage("Prepare") {
+        //             steps {
+        //                 echo "Rename name and identifier"
+        //             }
+        //         }
+        //         stage("Install") {
+        //             steps {
+        //                 echo "Rename name and identifier"
+        //             }
+        //         }
+        //         stage("Build") {
+        //             steps {
+        //                 echo "Rename name and identifier"
+        //             }
+        //         }
+        //     }
+        // }
         stage("Publish") {
+            agent {
+                node {
+                    label params.Platform
+                }
+            }
             steps {
-                echo "Publish app to cloud"
+                echo "Publish app to cloud by ${params.Platform}"
             }
             // input {
             //     message "Can we publish?"
