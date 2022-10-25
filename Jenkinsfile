@@ -47,7 +47,17 @@ pipeline {
         skipDefaultCheckout()
     }
     stages {
-        stage("Prepare:iOS") {
+        stage("Prepare") {
+            when {
+                expression {
+                    return params.Platform == "Android"
+                }
+            }
+            steps {
+                echo "Preparing for android"
+            }
+        }
+        stage("Rename:iOS") {
             when {
                 expression {
                     return params.Platform == "iOS"
@@ -66,7 +76,7 @@ pipeline {
                 // }    
             }
         }
-           stage("Prepare:android") {
+        stage("Rename:android") {
             when {
                 expression {
                     return params.Platform == "Android"
@@ -74,6 +84,16 @@ pipeline {
             }
             steps {
                 echo "Preparing for android"
+            }
+        }
+        stage("Generate:Icon") {
+            when {
+                expression {
+                    return params.Icon != '請選擇' || params.Icon != 'Default'
+                }
+            }
+            steps {
+                echo "Generated Icon ${params.Icon}"
             }
         }
         stage("Build") {
