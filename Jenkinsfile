@@ -65,7 +65,7 @@ pipeline {
                 // }    
             }
         }
-           stage("Prepare:iOS") {
+           stage("Prepare:android") {
             when {
                 equals Platform "android"
             }
