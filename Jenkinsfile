@@ -46,7 +46,7 @@ pipeline {
         stage("Stage Android") {
             when {
                 expression {
-                    return params.Platform == "android"
+                    return params.Platform == "Android"
                 }
             }
             agent {
@@ -80,10 +80,14 @@ pipeline {
         stage("Stage iOS") {
             when {
                 expression {
-                    return params.Platform == "ios"
+                    return params.Platform == "iOS"
                 }
             }
-           
+            agent {
+                node {
+                    label "ios"
+                }
+            }
             stages {
                 stage("Cleanup") {
                     steps {
