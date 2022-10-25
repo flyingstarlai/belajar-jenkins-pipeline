@@ -57,11 +57,7 @@ pipeline {
             stages {
                 stage("Prepare") {
                     steps {
-                       Sh '''
-                            echo "123"
-                            echo "4567"
-
-                        '''  
+                        echo "Rename name and identifier"
                     }
                 }
                 stage("Install") {
