@@ -12,7 +12,7 @@ properties([
          [
             $class: 'CascadeChoiceParameter',
             choiceType: 'PT_SINGLE_SELECT',
-            name: 'Host',
+            name: 'Icon',
             referencedParameters: 'Platform',
             script: [
                 $class: 'ScriptlerScript',
@@ -48,20 +48,31 @@ pipeline {
         skipDefaultCheckout()
     }
     stages {
-        stage("Prepare") {
+        stage("Prepare:iOS") {
+            when {
+                equals Platform "android"
+            }
             steps {
-                nodejs(nodeJSInstallationName: 'Node 18') {
-                    echo "Hello Prepare"
-                    echo "Start build: ${env.BUILD_NUMBER}"
-                    echo "Current build: ${currentBuild.number}"
-                    cleanWs()
-                    // checkout scm
-                    // sh "chmod +x ./prepare.sh && ./prepare.sh"
-                    // sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
-                }    
+                echo "Preparing for iOS"
+                // nodejs(nodeJSInstallationName: 'Node 18') {
+                //     echo "Hello Prepare"
+                //     echo "Start build: ${env.BUILD_NUMBER}"
+                //     echo "Current build: ${currentBuild.number}"
+                //     cleanWs()
+                //     checkout scm
+                //     sh "chmod +x ./prepare.sh && ./prepare.sh"
+                //     sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
+                // }    
             }
         }
-        
+           stage("Prepare:iOS") {
+            when {
+                equals Platform "android"
+            }
+            steps {
+                echo "Preparing for android"
+            }
+        }
         stage("Build") {
             steps {
                 script {
