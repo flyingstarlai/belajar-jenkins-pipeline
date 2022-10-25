@@ -112,7 +112,9 @@ pipeline {
             }
         }
         stage("Publish") {
-            echo "Publish app to cloud"
+            steps {
+                echo "Publish app to cloud"
+            }
             // input {
             //     message "Can we publish?"
             //     ok "Yes!"
