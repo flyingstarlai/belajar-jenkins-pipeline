@@ -43,7 +43,7 @@ pipeline {
         skipDefaultCheckout()
     }
     stages {
-        stage("Stage Android") {
+        stage("Android:Stage") {
             when {
                 expression {
                     return params.Platform == "Android"
@@ -55,11 +55,6 @@ pipeline {
                 }
             }
             stages {
-                stage("Cleanup") {
-                    steps {
-                        echo "Cleanup workspace..."
-                    }
-                }
                 stage("Prepare") {
                     steps {
                         echo "Rename name and identifier"
@@ -77,7 +72,7 @@ pipeline {
                 }
             }
         }
-        stage("Stage iOS") {
+        stage("iOS:Stage") {
             when {
                 expression {
                     return params.Platform == "iOS"
@@ -89,11 +84,6 @@ pipeline {
                 }
             }
             stages {
-                stage("Cleanup") {
-                    steps {
-                        echo "Cleanup workspace..."
-                    }
-                }
                 stage("Prepare") {
                     steps {
                         echo "Rename name and identifier"
