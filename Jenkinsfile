@@ -6,7 +6,7 @@ properties([
             name: 'Platform',
             script: [
                 $class: 'ScriptlerScript',
-                scriptlerScriptId:'Platform.groovy'
+                scriptlerScriptId:'getPlatform.groovy'
             ]
         ]
     ])
