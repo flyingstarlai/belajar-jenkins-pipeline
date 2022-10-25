@@ -89,7 +89,7 @@ pipeline {
         stage("Generate:Icon") {
             when {
                 expression {
-                    return params.Icon != '請選擇' || params.Icon != 'Default'
+                    return params.Icon != '請選擇' && params.Icon != 'Default'
                 }
             }
             steps {
