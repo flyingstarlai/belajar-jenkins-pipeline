@@ -4,7 +4,7 @@ properties([
             $class: 'ChoiceParameter',
             choiceType: 'PT_SINGLE_SELECT',
             name: 'Platform',
-            description: 'Pilih aple apa green'
+            description: 'Pilih aple apa green',
             script: [
                 $class: 'ScriptlerScript',
                 scriptlerScriptId:'getPlatforms.groovy'
