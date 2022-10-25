@@ -27,11 +27,7 @@ properties([
 ])
 
 pipeline {
-    agent {
-        node {
-            label "ubuntu && android"
-        }
-    }
+    agent none
     environment {
          CLOUD = credentials("nextcloud")
     }
@@ -47,66 +43,71 @@ pipeline {
         skipDefaultCheckout()
     }
     stages {
-        stage("Prepare") {
+        stage("Android") {
             when {
                 expression {
-                    return params.Platform == "Android"
+                    return params.Platform == "android"
                 }
             }
-            steps {
-                echo "Preparing for android"
+            agent {
+                node {
+                    label "android"
+                }
+            }
+            stages {
+                stage("Cleanup") {
+                    steps {
+                        echo "Cleanup workspace..."
+                    }
+                }
+                stage("Prepare") {
+                    steps {
+                        echo "Rename name and identifier"
+                    }
+                }
+                stage("Install") {
+                    steps {
+                        echo "Rename name and identifier"
+                    }
+                }
+                stage("Build") {
+                    steps {
+                        echo "Rename name and identifier"
+                    }
+                }
             }
         }
-        stage("Rename:iOS") {
+        stage("iOS") {
             when {
                 expression {
-                    return params.Platform == "iOS"
+                    return params.Platform == "ios"
                 }
             }
-            steps {
-                echo "Preparing for iOS"
-                // nodejs(nodeJSInstallationName: 'Node 18') {
-                //     echo "Hello Prepare"
-                //     echo "Start build: ${env.BUILD_NUMBER}"
-                //     echo "Current build: ${currentBuild.number}"
-                //     cleanWs()
-                //     checkout scm
-                //     sh "chmod +x ./prepare.sh && ./prepare.sh"
-                //     sh 'echo "Secret: $CLOUD_USR:$CLOUD_PSW" > "rahasia.txt"'
-                // }    
-            }
-        }
-        stage("Rename:android") {
-            when {
-                expression {
-                    return params.Platform == "Android"
+            agent {
+                node {
+                    label "ios"
                 }
             }
-            steps {
-                echo "Preparing for android"
-            }
-        }
-        stage("Generate:Icon") {
-            when {
-                expression {
-                    return params.Icon != '請選擇' && params.Icon != 'Default'
+            stages {
+                stage("Cleanup") {
+                    steps {
+                        echo "Cleanup workspace..."
+                    }
                 }
-            }
-            steps {
-                echo "Generated Icon ${params.Icon}"
-            }
-        }
-        stage("Build") {
-            steps {
-                script {
-                    // for(int i = 0; i < 5; i++) {
-                    //     echo "Script ${i}"
-                    // }
-                    def data = [
-                        "name": "Danda",
-                        "job": "CEO"
-                    ]
-                    writeJSON(file: "data_${env.BUILD_NUMBER}.json", json: data)
+                stage("Prepare") {
+                    steps {
+                        echo "Rename name and identifier"
+                    }
+                }
+                stage("Install") {
+                    steps {
+                        echo "Rename name and identifier"
+                    }
+                }
+                stage("Build") {
+                    steps {
+                        echo "Rename name and identifier"
+                    }
                 }
             }
         }
